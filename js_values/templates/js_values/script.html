@@ -1,0 +1,25 @@
+{% if include_script_tag %}
+    <script type="text/javascript">
+{% endif %}
+
+    {{ prefix }} = {{ prefix }} || {};
+
+{% for name, obj in objs %}
+    {{ prefix }}.{{ name }} = {{ prefix }}.{{ name }} || {};
+{% endfor %}
+
+{% for name, arr in arrays %}
+    {{ prefix }}.{{ name }} = {{ prefix }}.{{ name }} || [];
+{% endfor %}
+
+{% for name, dt in dates %}
+    {{ prefix }}.{{ name }} = new Date("{{ dt|safe }}");
+{% endfor %}
+
+{% for name, value in simplevalues %}
+    {{ prefix }}.{{ name }} = {{ value|safe }};
+{% endfor %}
+
+{% if include_script_tag %}
+    </script>
+{% endif %}
